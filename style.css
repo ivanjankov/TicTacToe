@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Nokora:wght@100;300;400;700;900&display=swap');
+
+:root {
+	--close-clr: #55e6c1;
+	--circle-clr: #ffd32a;
+	--light-bg: #334152;
+	--shadow: #050709;
+	--grey: #d2dae2;
+}
+
+body {
+	font-family: 'Nokora', sans-serif;
+	font-size: 22px;
+	color: #d2dae2;
+}
+
+#ui_wrapper {
+	background-color: #192028;
+	height: 100vh;
+	width: 100%;
+}
+
+.signs_ui,
+#turn,
+#restart {
+	width: 100px;
+}
+
+.ui_content {
+	width: 400px;
+	height: 550px;
+}
+
+.close {
+	color: var(--close-clr);
+	font-size: 1.4rem;
+	font-weight: 800;
+}
+
+.circle {
+	color: var(--circle-clr);
+	font-size: 1.4rem;
+	font-weight: 800;
+}
+
+#turn {
+	font-size: 1.2rem;
+	font-weight: 800;
+	text-align: center;
+	color: #d2dae2;
+	background-color: var(--light-bg);
+	height: 45px;
+	padding: 5px;
+	border-radius: 8px;
+	box-shadow: 0px 3px var(--shadow);
+}
+
+.restart_btn {
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	border: none;
+	color: #485460;
+	background-color: var(--grey);
+	box-shadow: 0px 3px #b3c1ce;
+}
+
+.restart_btn i {
+	transform: rotate(180deg);
+}
+
+.square {
+	font-weight: 800;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+	background-color: var(--light-bg);
+	border-radius: 8px;
+	box-shadow: 0px 4px 4px var(--shadow);
+	padding: 10px !important;
+}
+
+.ui_result {
+	font-size: 0.9rem;
+}
+
+.ui_result p {
+	margin: 0;
+}
+
+.rectangle {
+	width: 100px;
+	height: 55px;
+	padding: 10px;
+	border-radius: 8px;
+	color: #485460;
+	font-weight: 800;
+}
+
+.player {
+	font-size: 0.6rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.player_one {
+	background-color: var(--close-clr);
+}
+.result {
+	background-color: var(--grey);
+}
+.player_two {
+	background-color: var(--circle-clr);
+}
