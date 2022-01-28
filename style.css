@@ -114,3 +114,18 @@ body {
 .player_two {
 	background-color: var(--circle-clr);
 }
+
+/* MODAL */
+
+#winner_modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(51, 65, 82, 0.8);
+}
+
+#announce_winner h2 {
+	font-size: 80px;
+}
