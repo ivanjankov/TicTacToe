@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		) {
 			winner = playingSquares[combArr[0]].innerHTML;
 			announceWinner(winner);
+			return;
 		} else if (tie) {
 			announceWinner('Tie');
 		}
