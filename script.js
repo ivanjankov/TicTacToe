@@ -37,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function restartButtonFunc() {
-		let restartBtn = document.getElementsByClassName('restart_btn')[0];
-		restartBtn.addEventListener('click', resetFields);
+		let restartBtn = document.querySelectorAll(DOMStrings.restartBtn);
+		restartBtn.forEach((btn) => {
+			btn.addEventListener('click', resetFields);
+		});
 	}
 
 	function uIController() {
