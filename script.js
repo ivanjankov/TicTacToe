@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		restartBtn: '.restart_btn',
 		modal: 'winner_modal',
 		modalWinner: 'winner',
+		turn: 'turn',
 	};
 
 	let winningComb = ['012', '345', '678', '036', '147', '258', '246', '048'];
+	let currTurn = document.getElementsByClassName(DOMStrings.turn)[0];
 
 	function inputHtmlBasedOnPlayer() {
 		let player = 1;
@@ -18,9 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				() => {
 					if (player == 1) {
 						el.innerHTML = 'X';
+						currTurn.innerText = 'TURN O';
 						player = 0;
 					} else if (player == 0) {
 						el.innerHTML = 'O';
+						currTurn.innerText = 'TURN X';
 						player = 1;
 					}
 					checkWinner(winningComb);
@@ -33,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	function resetFields() {
 		let fields = document.querySelectorAll(DOMStrings.square);
 		let modal = document.getElementById(DOMStrings.modal);
+		currTurn.innerText = 'TURN X';
 		modal.classList.add('hidden');
 		fields.forEach((element) => {
 			element.innerHTML = '';
