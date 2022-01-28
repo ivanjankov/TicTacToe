@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		restartBtn: '.restart_btn',
 	};
 
-	let winningComb = [123, 456, 789, 147, 258, 369, 357, 159];
+	let winningComb = ['012', '345', '678', '036', '147', '258', '246', '048'];
 
 	function inputHtmlBasedOnPlayer() {
 		let player = 1;
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						el.innerHTML = 'O';
 						player = 1;
 					}
+					checkWinner(winningComb);
 				},
 				{ once: true }
 			);
@@ -43,6 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
 	function uIController() {
 		inputHtmlBasedOnPlayer();
 		restartButtonFunc();
+	}
+
+	function checkWinner(winningArray) {
+		let winComb = winningArray;
+		let singleComb, playingSquares;
+		playingSquares = document.querySelectorAll(DOMStrings.square);
+		winComb.forEach((comb) => {
+			singleComb = comb.split('');
+			compareSquares(singleComb, playingSquares);
+		});
+	}
+
+	function compareSquares(currComb, htmlEl) {
+		let playingSquares = Array.from(htmlEl);
+		let combArr = currComb.map(Number);
+		let winner;
+
+		if (
+			playingSquares[combArr[0]].innerHTML ==
+				playingSquares[combArr[1]].innerHTML &&
+			playingSquares[combArr[2]].innerHTML ==
+				playingSquares[combArr[0]].innerHTML &&
+			playingSquares[combArr[0]].innerHTML !== ''
+		) {
+			winner = playingSquares[combArr[0]].innerHTML;
+		}
 	}
 
 	uIController();
