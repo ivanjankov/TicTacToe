@@ -124,8 +124,26 @@ body {
 	width: 100%;
 	height: 100vh;
 	background-color: rgba(51, 65, 82, 0.8);
+	animation: smoothaniate 1.5s ease-in-out;
+}
+
+.hidden {
+	display: none !important;
 }
 
 #announce_winner h2 {
 	font-size: 80px;
+}
+
+.modal_btn {
+	width: 100px;
+}
+
+@keyframes smoothaniate {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

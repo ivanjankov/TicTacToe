@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	let DOMStrings = {
 		square: '.square',
 		restartBtn: '.restart_btn',
+		modal: 'winner_modal',
+		modalWinner: 'winner',
 	};
 
 	let winningComb = ['012', '345', '678', '036', '147', '258', '246', '048'];
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function resetFields() {
 		let fields = document.querySelectorAll(DOMStrings.square);
+		let modal = document.getElementById(DOMStrings.modal);
+		modal.classList.add('hidden');
 		fields.forEach((element) => {
 			element.innerHTML = '';
 		});
@@ -71,7 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			playingSquares[combArr[0]].innerHTML !== ''
 		) {
 			winner = playingSquares[combArr[0]].innerHTML;
+			announceWinner(winner);
 		}
+	}
+
+	function announceWinner(win) {
+		let modal = document.getElementById(DOMStrings.modal);
+		let winner = document.getElementById(DOMStrings.modalWinner);
+		modal.classList.remove('hidden');
+		winner.innerText = win;
 	}
 
 	uIController();
