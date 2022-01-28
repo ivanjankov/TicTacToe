@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	let DOMStrings = {
 		square: '.square',
+		restartBtn: '.restart_btn',
 	};
 
 	let winningComb = [123, 456, 789, 147, 258, 369, 357, 159];
@@ -26,5 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	inputHtmlBasedOnPlayer();
+	function resetFields() {
+		let fields = document.querySelectorAll(DOMStrings.square);
+		fields.forEach((element) => {
+			element.innerHTML = '';
+		});
+		inputHtmlBasedOnPlayer();
+	}
+
+	function restartButtonFunc() {
+		let restartBtn = document.getElementsByClassName('restart_btn')[0];
+		restartBtn.addEventListener('click', resetFields);
+	}
+
+	function uIController() {
+		inputHtmlBasedOnPlayer();
+		restartButtonFunc();
+	}
+
+	uIController();
 });
