@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		square: '.square',
 	};
 
+	let winningComb = [123, 456, 789, 147, 258, 369, 357, 159];
+
 	function inputHtmlBasedOnPlayer() {
 		let player = 1;
 		let squares = document.querySelectorAll(DOMStrings.square);
