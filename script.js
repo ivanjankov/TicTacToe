@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		let playingSquares = Array.from(htmlEl);
 		let combArr = currComb.map(Number);
 		let winner;
+		let tie = checkIfTie();
 
 		if (
 			playingSquares[combArr[0]].innerHTML ==
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		) {
 			winner = playingSquares[combArr[0]].innerHTML;
 			announceWinner(winner);
+		} else if (tie) {
+			announceWinner('Tie');
 		}
 	}
 
@@ -89,6 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		let winner = document.getElementById(DOMStrings.modalWinner);
 		modal.classList.remove('hidden');
 		winner.innerText = win;
+	}
+
+	function checkIfTie() {
+		let squares = Array.from(document.querySelectorAll(DOMStrings.square));
+		let validator = squares.every((el) => el.innerText !== '');
+		console.log(validator);
+		return validator;
 	}
 
 	uIController();
