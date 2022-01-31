@@ -101,5 +101,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		return validator;
 	}
 
+	function updateScore(winner) {
+		playerOne = document.getElementById(DOMStrings.playerOne);
+		playerTwo = document.getElementById(DOMStrings.playerTwo);
+		tie = document.getElementById(DOMStrings.tie);
+		let plOneCurr, plTwoCurr, tieCurr;
+
+		if (winner == 'X') {
+			plOneCurr = Number(playerOne.innerText) + 1;
+			playerOne.innerText = plOneCurr;
+		} else if (winner == 'O') {
+			plTwoCurr = Number(playerTwo.innerText) + 1;
+			playerTwo.innerText = plTwoCurr;
+		} else if (winner == 'Tie') {
+			tieCurr = Number(tie.innerText) + 1;
+			tie.innerText = tieCurr;
+		}
+	}
+
 	uIController();
 });
