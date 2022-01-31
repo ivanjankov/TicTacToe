@@ -74,19 +74,19 @@
 						class="player_one rectangle d-flex flex-column align-items-center justify-content-center"
 					>
 						<p class="player">X (you)</p>
-						<p class="player_one_score">0</p>
+						<p id="player_one_score" value="0">0</p>
 					</div>
 					<div
 						class="result rectangle d-flex flex-column align-items-center justify-content-center"
 					>
 						<p class="player">ties</p>
-						<p class="ties">ties</p>
+						<p id="tie">0</p>
 					</div>
 					<div
 						class="player_two rectangle d-flex flex-column align-items-center justify-content-center"
 					>
 						<p class="player">O (you)</p>
-						<p class="player_one_score">0</p>
+						<p id="player_two_score" value="0">0</p>
 					</div>
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 				class="d-flex flex-column justify-content-center align-items-center"
 			>
 				<h2 class="modal-title text-center mb-5">
-					Winner is: <span id="winner"></span>
+					<span id="winner"></span>
 				</h2>
 				<button class="restart_btn modal_btn">Restart</button>
 			</div>

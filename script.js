@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		modal: 'winner_modal',
 		modalWinner: 'winner',
 		turn: 'turn',
+		playerOne: 'player_one_score',
+		playerTwo: 'player_two_score',
+		tie: 'tie',
 	};
 
-	let winningComb = ['012', '345', '678', '036', '147', '258', '246', '048'];
 	let currTurn = document.getElementsByClassName(DOMStrings.turn)[0];
 
 	function inputHtmlBasedOnPlayer() {
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						currTurn.innerText = 'TURN X';
 						player = 1;
 					}
-					checkWinner(winningComb);
+					checkWinner();
 				},
 				{ once: true }
 			);
@@ -57,34 +59,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		restartButtonFunc();
 	}
 
-	function checkWinner(winningArray) {
-		let winComb = winningArray;
-		let singleComb, playingSquares;
-		playingSquares = document.querySelectorAll(DOMStrings.square);
-		winComb.forEach((comb) => {
-			singleComb = comb.split('');
-			compareSquares(singleComb, playingSquares);
-		});
-	}
-
-	function compareSquares(currComb, htmlEl) {
-		let playingSquares = Array.from(htmlEl);
-		let combArr = currComb.map(Number);
+	function checkWinner() {
+		let playingSquares = Array.from(
+			document.querySelectorAll(DOMStrings.square)
+		);
+		let combArr = [210, 345, 678, 360, 147, 258, 246, 804];
 		let winner;
-		let tie = checkIfTie();
+		for (let i = 0; i < combArr.length; i++) {
+			let currItem = String(combArr[i]).split('').map(Number);
+			console.log('Current item is: ', combArr[i]);
+			if (
+				playingSquares[currItem[0]].innerHTML ==
+					playingSquares[currItem[1]].innerHTML &&
+				playingSquares[currItem[2]].innerHTML ==
+					playingSquares[currItem[0]].innerHTML &&
+				playingSquares[currItem[0]].innerHTML !== ''
+			) {
+				winner = playingSquares[currItem[0]].innerHTML;
+				announceWinner(winner);
+				updateScore(winner);
 
-		if (
-			playingSquares[combArr[0]].innerHTML ==
-				playingSquares[combArr[1]].innerHTML &&
-			playingSquares[combArr[2]].innerHTML ==
-				playingSquares[combArr[0]].innerHTML &&
-			playingSquares[combArr[0]].innerHTML !== ''
-		) {
-			winner = playingSquares[combArr[0]].innerHTML;
-			announceWinner(winner);
-			return;
-		} else if (tie) {
-			announceWinner('Tie');
+				break;
+			} else if (checkIfTie() && i == combArr.length - 1) {
+				announceWinner('Tie');
+				updateScore('Tie');
+				break;
+			}
 		}
 	}
 
@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	function checkIfTie() {
 		let squares = Array.from(document.querySelectorAll(DOMStrings.square));
 		let validator = squares.every((el) => el.innerText !== '');
-		console.log(validator);
 		return validator;
 	}
 
