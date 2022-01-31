@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (player == 1) {
 						el.innerHTML = 'X';
 						currTurn.innerText = 'TURN O';
+						el.classList.add('close');
 						player = 0;
 					} else if (player == 0) {
+						el.classList.add('circle');
 						el.innerHTML = 'O';
 						currTurn.innerText = 'TURN X';
 						player = 1;
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		fields.forEach((element) => {
 			element.innerHTML = '';
 		});
+		removeClassFromSquares(fields);
 		inputHtmlBasedOnPlayer();
 	}
 
@@ -67,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		let winner;
 		for (let i = 0; i < combArr.length; i++) {
 			let currItem = String(combArr[i]).split('').map(Number);
-			console.log('Current item is: ', combArr[i]);
 			if (
 				playingSquares[currItem[0]].innerHTML ==
 					playingSquares[currItem[1]].innerHTML &&
@@ -78,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				winner = playingSquares[currItem[0]].innerHTML;
 				announceWinner(winner);
 				updateScore(winner);
-
 				break;
 			} else if (checkIfTie() && i == combArr.length - 1) {
 				announceWinner('Tie');
@@ -108,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		let plOneCurr, plTwoCurr, tieCurr;
 
 		if (winner == 'X') {
+			console.log('wiiner is: X');
 			plOneCurr = Number(playerOne.innerText) + 1;
 			playerOne.innerText = plOneCurr;
 		} else if (winner == 'O') {
@@ -117,6 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			tieCurr = Number(tie.innerText) + 1;
 			tie.innerText = tieCurr;
 		}
+	}
+
+	function removeClassFromSquares(arr) {
+		let squares = arr;
+		squares.forEach((el) => {
+			if (el.classList.contains('circle')) {
+				el.classList.remove('circle');
+			} else if (el.classList.contains('close')) {
+				el.classList.remove('close');
+			}
+		});
 	}
 
 	uIController();
