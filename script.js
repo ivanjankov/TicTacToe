@@ -68,16 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		);
 		let combArr = [210, 345, 678, 360, 147, 258, 246, 804];
 		let winner;
+
 		for (let i = 0; i < combArr.length; i++) {
 			let currItem = String(combArr[i]).split('').map(Number);
 			if (
-				playingSquares[currItem[0]].innerHTML ==
-					playingSquares[currItem[1]].innerHTML &&
-				playingSquares[currItem[2]].innerHTML ==
-					playingSquares[currItem[0]].innerHTML &&
-				playingSquares[currItem[0]].innerHTML !== ''
+				playingSquares[currItem[0]].innerText ==
+					playingSquares[currItem[1]].innerText &&
+				playingSquares[currItem[2]].innerText ==
+					playingSquares[currItem[0]].innerText &&
+				playingSquares[currItem[0]].innerText !== ''
 			) {
-				winner = playingSquares[currItem[0]].innerHTML;
+				winner = playingSquares[currItem[0]].innerText;
 				announceWinner(winner);
 				updateScore(winner);
 				break;
@@ -109,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		let plOneCurr, plTwoCurr, tieCurr;
 
 		if (winner == 'X') {
-			console.log('wiiner is: X');
 			plOneCurr = Number(playerOne.innerText) + 1;
 			playerOne.innerText = plOneCurr;
 		} else if (winner == 'O') {
