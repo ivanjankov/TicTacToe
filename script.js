@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 
 	let currTurn = document.getElementsByClassName(DOMStrings.turn)[0];
+	let gameOver = false;
 
 	function inputHtmlBasedOnPlayer() {
 		let player = 1;
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 		removeClassFromSquares(fields);
 		inputHtmlBasedOnPlayer();
+		gameOver = false;
 	}
 
 	function restartButtonFunc() {
@@ -68,24 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		);
 		let combArr = [210, 345, 678, 360, 147, 258, 246, 804];
 		let winner;
-
-		for (let i = 0; i < combArr.length; i++) {
-			let currItem = String(combArr[i]).split('').map(Number);
-			if (
-				playingSquares[currItem[0]].innerText ==
-					playingSquares[currItem[1]].innerText &&
-				playingSquares[currItem[2]].innerText ==
-					playingSquares[currItem[0]].innerText &&
-				playingSquares[currItem[0]].innerText !== ''
-			) {
-				winner = playingSquares[currItem[0]].innerText;
-				announceWinner(winner);
-				updateScore(winner);
-				break;
-			} else if (checkIfTie() && i == combArr.length - 1) {
-				announceWinner('Tie');
-				updateScore('Tie');
-				break;
+		if (gameOver == false) {
+			for (let i = 0; i < combArr.length; i++) {
+				let currItem = String(combArr[i]).split('').map(Number);
+				if (
+					playingSquares[currItem[0]].innerText ==
+						playingSquares[currItem[1]].innerText &&
+					playingSquares[currItem[2]].innerText ==
+						playingSquares[currItem[0]].innerText &&
+					playingSquares[currItem[0]].innerText !== ''
+				) {
+					winner = playingSquares[currItem[0]].innerText;
+					announceWinner(winner);
+					updateScore(winner);
+					gameOver = true;
+					return;
+				} else if (checkIfTie() && i == combArr.length - 1) {
+					announceWinner('Tie');
+					updateScore('Tie');
+					gameOver = true;
+					return;
+				}
 			}
 		}
 	}
